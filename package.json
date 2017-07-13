@@ -1,0 +1,15 @@
+{
+  "name": "charter-schools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "blendid": "^4.1.1",
+    "jquery": "^3.2.1",
+    "leaflet": "^1.1.0",
+    "pym.js": "^1.2.2"
+  },
+  "scripts": {
+    "start": "yarn run blendid"
+  }
+}

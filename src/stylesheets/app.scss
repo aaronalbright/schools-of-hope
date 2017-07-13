@@ -1,0 +1,28 @@
+@import url('https://unpkg.com/leaflet@1.1.0/dist/leaflet.css');
+
+#map {
+  height: 600px;
+  width: 400px;
+}
+
+.leaflet-tooltip-pane > .leaflet-tooltip {
+  font-family: "McClatchy Sans";
+  border: 1px solid #000;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 4px;
+}
+
+.leaflet-tooltip-pane > .leaflet-tooltip-left:before {
+  border-left-color: #000;
+}
+
+footer {
+  font-family: "McClatchy Sans";
+  font-size: 10px;
+  padding-top: 10px;
+}
+
+.leaflet-container a {
+  color: #000;
+}
