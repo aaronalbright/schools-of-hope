@@ -1,2 +1,2 @@
-import { charterMap } from './modules';
-charterMap();
+import { schoolMap } from './modules';
+schoolMap();

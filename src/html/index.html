@@ -7,5 +7,27 @@
 {% extends 'layouts/application.html' %}
 
 {% block content %}
-  <div id="map"></div>
+<div class="graphic">
+  <div class="intro">
+      <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <table class="table table-striped">
+        <tr>
+        <th>District</th>
+        <th>School name</th>
+        <th>Address</th>
+        </tr>
+      </table>
+    </div>
+
+  <div class="mapWrapper">
+    <div id="map"></div>
+  </div>
+
+  <div class="source">
+      <span class="note">Source: Florida House and Florida Department of Education</span>
+      <span class="credit"><span>AARON ALBRIGHT</span> aalbright@miamiherald.com</span>
+  </div>
+<div style="clear:both"></div>
+</div>
 {% endblock %}

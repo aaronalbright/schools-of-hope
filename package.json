@@ -10,6 +10,7 @@
     "pym.js": "^1.2.2"
   },
   "scripts": {
-    "start": "yarn run blendid"
+    "start": "yarn run blendid",
+    "build": "yarn run blendid -- build"
   }
 }

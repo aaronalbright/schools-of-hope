@@ -1,28 +1,68 @@
 @import url('https://unpkg.com/leaflet@1.1.0/dist/leaflet.css');
+@import 'base/bootstrap-custom';
 
-#map {
-  height: 600px;
-  width: 400px;
+.graphic,h1,h2,h3,h4,h5,h6{
+	font-family:"McClatchy Sans",Helvetica,Arial,sans-serif
+}
+.graphic{
+	max-width:700px;
+	border-top-width:2px;
+	border-top-style:dotted;
+	border-top-color:#ccc;
+	margin-bottom: 20px;
 }
 
-.leaflet-tooltip-pane > .leaflet-tooltip {
-  font-family: "McClatchy Sans";
-  border: 1px solid #000;
-  border-radius: 0px;
-  box-shadow: none;
-  padding: 4px;
+.graphic h3{
+	margin-top:10px;
+	width: 100%;
+	font-family:"McClatchy Slab",Helvetica,Arial,sans-serif
 }
 
-.leaflet-tooltip-pane > .leaflet-tooltip-left:before {
-  border-left-color: #000;
+.graphic p{
+	font-size:14px;
+	width: 100%;
+}
+.graphic .source{
+	font-size:11px;
 }
 
-footer {
-  font-family: "McClatchy Sans";
-  font-size: 10px;
-  padding-top: 10px;
+.graphic .source span{
+	width: 50%;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.graphic .note {
+	margin-bottom:10px;
+	float: left;
+}
+
+.graphic .credit {
+	float: right;
+	text-align: right;
+}
+.graphic .credit span{
+	font-weight: 500;
 }
 
 .leaflet-container a {
   color: #000;
+}
+
+.mapWrapper {
+  height: 400px;
+}
+
+ .mapWrapper iframe,
+ .mapWrapper embed,
+ .mapWrapper object,
+ .mapWrapper #map {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.table {
+  font-size: 12px;
 }
