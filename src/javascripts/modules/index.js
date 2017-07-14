@@ -5,23 +5,26 @@ class Schools {
 
   render(data) {
 
-  let centerMarker = [25.81164, -80.21942]
+  let centerMarker = [25.86008, -80.27762];
 
-  let mapOptions = {
+  let schoolList = [];
+
+  let options = {
         attributionControl: false,
         center: centerMarker,
-        zoom: 12,
-        zoomControl: false,
+        zoom: 9,
         scrollWheelZoom: false,
-      }
+        zoomControl: false,
+        dragging: false
+      };
 
-  const map = new L.Map('map', mapOptions);
+  const map = new L.Map('map', options);
 
-  map.on('click', (e) => {
-    console.log(`${e.latlng}`);
-  });
+  // map.on('click', (e) => {
+  //   console.log(`${e.latlng}`);
+  // });
 
-  L.tileLayer('https://api.mapbox.com/styles/v1/aalbright-mh/cj4ojfvn49uob2smcdyi6qt3l/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWFsYnJpZ2h0LW1oIiwiYSI6ImNqM3ExYTFrbzAwdWoyd3BmOXBsdWlraWoifQ.4ZSAZpc41c39EWcwFhUjoA').addTo(map);
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
 
   L.control.attribution({prefix: false})
            .addAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, &copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a>')
@@ -29,27 +32,42 @@ class Schools {
 
   //  L.marker(centerMarker).addTo(map);
 
-  data.forEach( (data) => {
+  data.forEach( (d, i) => {
 
-    $(`.table`).append(`<tr>
-      <td>${data.County}</td>
-      <td>${data.Name}</td>
-      <td>${data.Address}</td>
+    $(`.table`).append(
+      `<tr>
+      <td class="school ${i}">${d.Name}</td>
       </tr>`);
 
-    let circleOptions = {
-      radius: 8,
+    let options = {
+      radius: 7,
       color: '#FFF',
       weight: 1,
       fillOpacity: 1,
       fillColor: '#379ad3'
     }
 
-    let marker = L.circleMarker([data.Latitude, data.Longitude], circleOptions).addTo(map);
+    const marker = L.circleMarker([d.Latitude, d.Longitude], options).addTo(map);
 
-    marker.bindTooltip(`<b>${data.Name}</b><br>${data.Address}`);
+    marker.bindPopup(`<b>${d.Name}</b>`, {closeButton: false});
+
+    schoolList.push({xy : marker.getLatLng(), pop : marker.getPopup()});
 
   });
+
+
+  $('.school').hover(function(){
+
+    let i = this.classList[1];
+
+    map.setView(schoolList[i].xy, 12)
+       .openPopup(schoolList[i].pop, schoolList[i].pop._source._latlng);
+
+     });
+
+  $('.bar-reset').click( () => {
+    map.setView(centerMarker, 9);
+  })
 
   }
 }
@@ -57,7 +75,6 @@ class Schools {
 const schoolMap = () => {
 
   let iframeChild = new pym.Child();
-
   iframeChild.sendHeight();
 
   $.getJSON('data.json', (json) => {

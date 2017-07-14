@@ -8,23 +8,24 @@
 
 {% block content %}
 <div class="graphic">
-  <div class="intro">
-      <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <table class="table table-striped">
+    <h3>{{ headline }}</h3>
+  <div class="intro col-sm-6">
+      <p>{{ leadin }}</p>
+      <table class="table table-hover">
         <tr>
-        <th>District</th>
-        <th>School name</th>
-        <th>Address</th>
+        <th>School</th>
         </tr>
       </table>
     </div>
 
-  <div class="mapWrapper">
-    <div id="map"></div>
+  <div class="mapWrapper col-sm-6">
+    <div id="map">
+      <div class="bar"><span class="bar-reset">Reset view</span>
+      </div>
+    </div>
   </div>
 
-  <div class="source">
+  <div class="source col-xs-12">
       <span class="note">Source: Florida House and Florida Department of Education</span>
       <span class="credit"><span>AARON ALBRIGHT</span> aalbright@miamiherald.com</span>
   </div>
