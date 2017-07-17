@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "blendid": "^4.1.1",
+    "eslint": "^4.2.0",
     "jquery": "^3.2.1",
     "leaflet": "^1.1.0",
     "pym.js": "^1.2.2"
