@@ -1,14 +1,13 @@
-import $ from 'jquery';
-import L from 'leaflet';
-import * as pym from 'pym.js';
+import L from 'leaflet'
+import pym from 'pym.js'
 
 class Schools {
 
   render(data) {
 
-  let centerMarker = [25.86008, -80.27762];
+  let centerMarker = [25.86008, -80.27762]
 
-  let schoolList = [];
+  let schoolList = []
 
   let options = {
         attributionControl: false,
@@ -17,7 +16,7 @@ class Schools {
         scrollWheelZoom: false,
         zoomControl: false,
         dragging: false
-      };
+      }
 
   // Standard leaflet init stuff
   const map = new L.Map('map', options);
@@ -27,7 +26,7 @@ class Schools {
   // });
   // L.marker(centerMarker).addTo(map);
 
-  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map);
 
   L.control.attribution({prefix: false})
            .addAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, &copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a>')
@@ -36,10 +35,11 @@ class Schools {
   // Populates table, markers and popups via a for loop that interates through the JSON file
   data.forEach( (d, i) => {
 
-    $(`.table`).append(
-      `<tr>
-      <td class="school ${i}">${d.Name}</td>
-      </tr>`);
+    $(`tbody`).append(`
+      <tr>
+      <td class="school-${i}">${d.Name}</td>
+      </tr>
+      `);
 
     let options = {
       radius: 7,
@@ -47,7 +47,7 @@ class Schools {
       weight: 1,
       fillOpacity: 1,
       fillColor: '#379ad3'
-    };
+    }
 
     const marker = L.circleMarker([d.Latitude, d.Longitude], options).addTo(map);
 
@@ -57,11 +57,13 @@ class Schools {
   });
 
   // Adds interactivty to table. On hover (or click), the map pans and zooms to school location.
-  $('.school').hover(function(){
+  $('td').hover(function(){
 
-    let i = this.classList[1];
+    let i = this.classList[0];
 
-    map.setView(schoolList[i].xy, 12)
+    i = i.slice(7);
+
+    map.setView(schoolList[i].xy, 10)
        .openPopup(schoolList[i].pop, schoolList[i].pop._source._latlng);
   });
 
@@ -81,6 +83,6 @@ const schoolMap = () => {
   $.getJSON('data.json', (json) => {
     new Schools().render(json);
   });
-};
+}
 
-export { schoolMap };
+export { schoolMap }

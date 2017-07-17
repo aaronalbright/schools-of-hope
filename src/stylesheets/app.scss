@@ -1,14 +1,14 @@
 @import url('https://unpkg.com/leaflet@1.1.0/dist/leaflet.css');
 @import 'base/bootstrap-custom';
 
-.graphic,h1,h2,h3,h4,h5,h6,.leaflet-popup-content{
+* {
 	font-family:"McClatchy Sans",Helvetica,Arial,sans-serif
 }
 .graphic{
-	max-width:700px;
-	border-top-width:2px;
-	border-top-style:dotted;
-	border-top-color:#ccc;
+	max-width: 700px;
+	border-top-width: 2px;
+	border-top-style: dotted;
+	border-top-color: #ccc;
 	margin-bottom: 20px;
 }
 
@@ -66,10 +66,6 @@
   margin-bottom: 0px;
 }
 
-td {
-  cursor: pointer;
-}
-
 .bar {
     position: absolute;
     z-index: 999;
@@ -111,4 +107,10 @@ td {
 
 .leaflet-popup-tip-container {
   overflow: visible;
+}
+
+@media (max-width: 699px) {
+  .mapWrapper {
+  height: 250px;
+}
 }
