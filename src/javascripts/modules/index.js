@@ -57,9 +57,9 @@ class Schools {
   });
 
   // Adds interactivty to table. On hover (or click), the map pans and zooms to school location.
-  $('td').hover(function(){
+  $('td').hover( (e) => {
 
-    let i = this.classList[0];
+    let i = e.currentTarget.className;
 
     i = i.slice(7);
 
