@@ -7,7 +7,6 @@
     "blendid": "^4.1.1",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^1.10.15",
-    "datatables.net-dt": "^1.10.15",
     "eslint": "^4.2.0",
     "jquery": "^3.2.1",
     "leaflet": "^1.1.0",

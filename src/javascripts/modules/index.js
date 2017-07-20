@@ -50,20 +50,23 @@ class Schools {
         <td>${d.county}</td>
         <td>${d.name}</td>
         <td>${d.city}</td>
-        <td>${d['2017grade']}</td>
+        <td>${d.grade17}</td>
         </tr>
         `);
 
     const marker = L.circleMarker([d.latitude, d.longitude], mkrOptions).addTo(map);
 
-    if (d.enrollment && d['2016grade'] && d['2015grade']) {
-      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d['2017grade']}<br>2016: ${d['2016grade']}<br>2015: ${d['2015grade']}</p>`, {closeButton: false});
+    if (d.enrollment && d.grade16 && d.grade15) {
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d.grade17}<br>2016: ${d.grade16}<br>2015: ${d.grade15}</p>`, {closeButton: false});
     }
-    else if (d.enrollment && d['2016grade']) {
-      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d['2017grade']}<br>2016: ${d['2016grade']}</p>`, {closeButton: false});
+    else if (d.enrollment && d.grade16) {
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d.grade17}<br>2016: ${d.grade16}</p>`, {closeButton: false});
+    }
+    else if (d.enrollment) {
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d.grade17}</p>`, {closeButton: false});
     }
     else {
-      marker.bindPopup(`<p><b>${d.name}</b><br><i>No enrollment numbers or 2015-16 grades provided</i><br><b>Grade:</b><br>2017: ${d['2017grade']}</p>`, {closeButton: false});
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>No student population numbers or 2015-16 grades provided</i><br><b>Grade:</b><br>2017: ${d.grade17}</p>`, {closeButton: false});
     }
 
     schoolList.push({xy: marker.getLatLng(), pop: marker.getPopup()});
@@ -87,7 +90,7 @@ class Schools {
 
   $('table').DataTable({
     paging: false,
-    scrollY: 200,
+    scrollY: 250,
     info: false
   });
 
