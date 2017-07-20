@@ -1,32 +1,42 @@
 import L from 'leaflet'
 import pym from 'pym.js'
+import 'datatables.net-bs'
 
 class Schools {
 
   render(data) {
 
-  let centerMarker = [25.86008, -80.27762]
+  let centerMarker = [28.13013, -83.12256];
 
-  let schoolList = []
+  let schoolList = [];
 
   let options = {
         attributionControl: false,
         center: centerMarker,
-        zoom: 9,
+        zoom: 6,
         scrollWheelZoom: false,
-        zoomControl: false,
-        dragging: false
-      }
+        zoomControl: true,
+        dragging: true
+      };
+
+  let mkrOptions = {
+      radius: 7,
+      color: '#FFF',
+      weight: 1,
+      fillOpacity: 0.75,
+      fillColor: '#379ad3'
+    };
 
   // Standard leaflet init stuff
   const map = new L.Map('map', options);
 
+  // Snippet that helps you find and use the map center.
   // map.on('click', (e) => {
   //   console.log(`${e.latlng}`);
   // });
   // L.marker(centerMarker).addTo(map);
 
-  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map);
+  L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWFsYnJpZ2h0LW1oIiwiYSI6ImNqM3ExYTFrbzAwdWoyd3BmOXBsdWlraWoifQ.4ZSAZpc41c39EWcwFhUjoA').addTo(map);
 
   L.control.attribution({prefix: false})
            .addAttribution('&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, &copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a>')
@@ -35,41 +45,50 @@ class Schools {
   // Populates table, markers and popups via a for loop that interates through the JSON file
   data.forEach( (d, i) => {
 
-    $(`tbody`).append(`
-      <tr>
-      <td class="school-${i}">${d.Name}</td>
-      </tr>
-      `);
+        $(`tbody`).append(`
+        <tr id="school-${i}">
+        <td>${d.county}</td>
+        <td>${d.name}</td>
+        <td>${d.city}</td>
+        <td>${d['2017grade']}</td>
+        </tr>
+        `);
 
-    let options = {
-      radius: 7,
-      color: '#FFF',
-      weight: 1,
-      fillOpacity: 1,
-      fillColor: '#379ad3'
+    const marker = L.circleMarker([d.latitude, d.longitude], mkrOptions).addTo(map);
+
+    if (d.enrollment && d['2016grade'] && d['2015grade']) {
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d['2017grade']}<br>2016: ${d['2016grade']}<br>2015: ${d['2015grade']}</p>`, {closeButton: false});
     }
-
-    const marker = L.circleMarker([d.Latitude, d.Longitude], options).addTo(map);
-
-    marker.bindPopup(`<b>${d.Name}</b>`, {closeButton: false});
+    else if (d.enrollment && d['2016grade']) {
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d['2017grade']}<br>2016: ${d['2016grade']}</p>`, {closeButton: false});
+    }
+    else {
+      marker.bindPopup(`<p><b>${d.name}</b><br><i>No enrollment numbers or 2015-16 grades provided</i><br><b>Grade:</b><br>2017: ${d['2017grade']}</p>`, {closeButton: false});
+    }
 
     schoolList.push({xy: marker.getLatLng(), pop: marker.getPopup()});
   });
 
-  // Adds interactivty to table. On hover (or click), the map pans and zooms to school location.
-  $('td').hover( (e) => {
+  // Adds interactivty to table. On hover (or tap), the map pans and zooms to school location.
+  $('tbody tr').click( (e) => {
 
-    let i = e.currentTarget.className;
+    let i = e.currentTarget.id;
 
     i = i.slice(7);
 
-    map.setView(schoolList[i].xy, 10)
+    map.setView(schoolList[i].xy, 9)
        .openPopup(schoolList[i].pop, schoolList[i].pop._source._latlng);
   });
 
   // Resets map view to orignal zoom and position.
   $('.bar-reset').click( () => {
-    map.setView(centerMarker, 9);
+    map.setView(centerMarker, 6);
+  });
+
+  $('table').DataTable({
+    paging: false,
+    scrollY: 200,
+    info: false
   });
 
   }
@@ -77,10 +96,12 @@ class Schools {
 
 const schoolMap = () => {
 
+  // That pym.js goodness
   let iframeChild = new pym.Child();
   iframeChild.sendHeight();
 
-  $.getJSON('data.json', (json) => {
+  // Putting it all together...
+  $.getJSON('schools.json', (json) => {
     new Schools().render(json);
   });
 }

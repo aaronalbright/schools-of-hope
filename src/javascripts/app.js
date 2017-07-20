@@ -1,2 +1,5 @@
 import { schoolMap } from './modules';
-schoolMap();
+$(function() {
+    schoolMap(); 
+});
+

@@ -9,24 +9,29 @@
 {% block content %}
 <div class="graphic">
     <h3>{{ headline }}</h3>
-  <div class="intro col-sm-6">
-      <p>{{ leadin }}</p>
+    <p>{{ leadin }}</p>
+    <span class="info">Click on a school to see grades and 2016-17 student population.</span>
       <table class="table table-hover">
-        <tr>
-        <th>School</th>
+        <thead>
+          <tr>
+          <th>County</th>
+          <th>School</th>
+          <th>City</th>
+          <th>2017 Grade</th>
         </tr>
+      </thead>
+      <tbody></tbody>
       </table>
-    </div>
 
-  <div class="mapWrapper col-sm-6">
+  <div class="mapWrapper">
     <div id="map">
       <div class="bar"><span class="bar-reset">Reset view</span>
       </div>
     </div>
   </div>
   
-  <div class="source col-xs-12">
-      <span class="note">{{ source }}</span>
+  <div class="note">
+      <span class="source">{{ source }}</span>
       <span class="credit"><span>AARON ALBRIGHT</span> aalbright@miamiherald.com</span>
   </div>
 <div style="clear:both"></div>

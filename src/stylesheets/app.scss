@@ -1,5 +1,5 @@
 @import url('https://unpkg.com/leaflet@1.1.0/dist/leaflet.css');
-@import 'base/bootstrap-custom';
+@import url('https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.15/datatables.min.css');
 
 * {
 	font-family:"McClatchy Sans",Helvetica,Arial,sans-serif
@@ -22,35 +22,35 @@
 	font-size:14px;
 	width: 100%;
 }
-.graphic .source{
+.graphic .note{
 	font-size:11px;
   padding-top: 10px;
+  span {
+	  width: 50%;
+	  margin-bottom: 10px;
+  }
 }
 
-.graphic .source span{
-	width: 50%;
-	margin-bottom: 10px;
-}
-
-.graphic .note {
+.graphic .source {
 	margin-bottom:10px;
 	float: left;
 }
 
 .graphic .credit {
 	float: right;
-	text-align: right;
+  text-align: right;
+  span {
+    	font-weight: 500;
+  }
 }
-.graphic .credit span{
-	font-weight: 500;
-}
+
 
 .leaflet-container a {
   color: #000;
 }
 
 .mapWrapper {
-  height: 404px;
+  height: 400px;
 }
 
  .mapWrapper iframe,
@@ -68,18 +68,19 @@
 
 .bar {
     position: absolute;
-    z-index: 999;
+    z-index: 800 !important;
     text-align: left;
     overflow: hidden;
-    border-bottom: 1px solid #DCDCDC;
-    border-right: 1px solid #DCDCDC;
-    border-bottom-right-radius: 5px;
-    left: 0;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .bar-reset {
     font-family:"McClatchy Sans",Helvetica,Arial,sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     padding: 6px 12px 6px 12px;
     background-color: rgb(255,255,255);
     cursor: pointer;
@@ -107,6 +108,33 @@
 
 .leaflet-popup-tip-container {
   overflow: visible;
+}
+
+td {
+  cursor: pointer;
+}
+
+label {
+  float: right;
+}
+
+.input-sm {
+  height: 25px;
+  border-radius: 5px;
+}
+
+.info {
+  position: absolute;
+  font-size: 12px;
+  color: #777;
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+  color: #379ad3;
+}
+
+table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after {
+  opacity: 0.9;
 }
 
 @media (max-width: 699px) {
