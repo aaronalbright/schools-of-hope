@@ -52,7 +52,7 @@ class Schools {
         </tr>
         `);
 
-    const marker = L.circleMarker([d.latitude, d.longitude], mkrOptions).addTo(map);
+    let marker = L.circleMarker([d.latitude, d.longitude], mkrOptions).addTo(map);
 
     if (d.enrollment && d.grade16 && d.grade15) {
       marker.bindPopup(`<p><b>${d.name}</b><br><i>Student population: ${d.enrollment}</i><br><b>Grade:</b><br>2017: ${d.grade17}<br>2016: ${d.grade16}<br>2015: ${d.grade15}</p>`, {closeButton: false});
