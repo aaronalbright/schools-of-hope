@@ -1,10 +1,14 @@
-@import url('http://media.miamiherald.com/static/media/projects/fonts/fonts.css');
+// @import url('http://media.miamiherald.com/static/media/projects/fonts/fonts.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css');
+@import url('https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css');
 @import url('https://unpkg.com/leaflet@1.1.0/dist/leaflet.css');
-@import url('https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.15/datatables.min.css');
 
+// Set default font
 * {
-	font-family:"McClatchy Sans",Helvetica,Arial,sans-serif
+  font-family:"McClatchy Sans",Helvetica,Arial,sans-serif
 }
+
+// General graphic styles
 .graphic{
 	max-width: 700px;
 	border-top-width: 2px;
@@ -47,10 +51,12 @@
   }
 }
 
-.leaflet-container a {
-  color: #000;
+.info {
+  font-size: 12px;
+  color: #777;
 }
 
+// Makes the map play nice with Pym et al
 .mapWrapper {
   margin-top: 30px;
   height: 350px;
@@ -64,15 +70,7 @@
     height: 100%;
 }
 
-.table {
-  font-size: 12px;
-  margin-bottom: 0px;
-}
-
-#DataTables_Table_0_wrapper {
-  box-shadow: inset 0px -10px 10px -10px #777;
-}
-
+// Map reset buttom styles
 .bar {
     position: absolute;
     z-index: 500;
@@ -80,9 +78,9 @@
     overflow: hidden;
     border: 2px solid rgba(0,0,0,0.2);
     border-radius: 5px;
-    right: 0;
-    margin-top: 10px;
-    margin-right: 10px;
+    bottom: 0;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .bar-reset {
@@ -97,6 +95,11 @@
 .bar-reset:hover, .bar-reset:active {
     background: #379ad3;
     color: #FFF;
+}
+
+// Custom leaflet styles
+.leaflet-container a {
+  color: #000;
 }
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
@@ -130,15 +133,18 @@ label {
   border-radius: 5px;
 }
 
-.info {
-  font-size: 12px;
-  color: #777;
-}
-
 table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
   color: #379ad3;
 }
 
 table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after {
   opacity: 0.9;
+}
+
+.table {
+  font-size: 12px;
+}
+
+#DataTables_Table_0_wrapper {
+  box-shadow: inset 0px -10px 10px -10px #777;
 }

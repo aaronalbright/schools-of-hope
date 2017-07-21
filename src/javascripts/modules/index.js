@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import pym from 'pym.js'
-import 'datatables.net-bs'
+import 'datatables.net-responsive-bs'
 
 class Schools {
 
@@ -15,8 +15,6 @@ class Schools {
         center: centerMarker,
         zoom: 6,
         scrollWheelZoom: false,
-        zoomControl: true,
-        dragging: true
       };
 
   let mkrOptions = {
@@ -91,7 +89,8 @@ class Schools {
   $('table').DataTable({
     paging: false,
     scrollY: 250,
-    info: false
+    info: false,
+    responsive: true
   });
 
   }
