@@ -1,3 +1,6 @@
+# This project has been **Archived**
+Thanks for visiting. o/
+
 # What am I?
 
 This is a simple interactive "widget" designed as embed for McClatchy properties.
